@@ -17,7 +17,8 @@ def filterIP(ipLocations, country = None, state = None, city = None):
             else:
                 results.append(newResult)
     if not results:
-        return "Ip not found"
+        result = ["Ip not Found"]
+        return result
     elif topResult is True:
         return topResult
     else:
@@ -26,7 +27,7 @@ def filterLocation(ipLocations, ipAddress):
     results = []
     for ip in ipLocations:
         if ipAddress == ip[0]:
-            newResult = [ipAddress, ip[1], ip[2] , ip[3]]
+            newResult = [ipAddress, ip[1], ip[2], ip[3]]
             results.append(newResult)
     if not results:
         return "Ip not found"

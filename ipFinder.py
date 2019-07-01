@@ -34,13 +34,12 @@ def filter():
     cityName = cityEntry.get()
     stateName = stateEntry.get()
     ipName = ipEntry.get()
-    if countryName or cityName or stateName is True:
+    if countryName or cityName or stateName:
         result = ipFilter.filterIP((ipLocation.locateIp(ipSearch.search(fileName))),countryName,stateName,cityName)
         ipListText.insert(INSERT, '\n'.join([' | '.join([str(item) for item in ip]) for ip in result]))
-    elif ipName is True:
-        result = ipFilter.filterIP((ipLocation.locateIp(ipSearch.search(fileName))),ipName)
+    elif ipName:
+        result = ipFilter.filterLocation((ipLocation.locateIp(ipSearch.search(fileName))),ipName)
         ipListText.insert(INSERT, '\n'.join([' | '.join([str(item) for item in ip]) for ip in result]))
-
     else:
         messagebox.showerror("Cannot filter results", "Please enter a search credential")
     ipListText.config(state=DISABLED)
