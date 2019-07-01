@@ -1,39 +1,25 @@
-
 def filterIP(ipLocations, country = None, state = None, city = None):
     results = []
-    if city and state and country is not None:
-        for ip in ipLocations:
-            if ip[1] == city and ip[2] == state and ip[3] == country:
-                newResult = [ip[0], city, state, country]
-                results.append(newResult)
-    elif (city and state) or (state and country) or (city and country) is not None:
-        for ip in ipLocations:
-            if ip[2] == state and ip[1] == city:
-                newResult = [ip[0],city,state,ip[3]]
-                results.append(newResult)
-            elif ip[2] == state and ip[3] == country:
-                newResult = [ip[0],ip[1],state,country]
-                results.append(newResult)
-            elif ip[3] == country and ip[1] == city:
-                newResult = [ip[0], city, ip[2], country]
-                results.append(newResult)
-    elif city  is not None:
-        for ip in ipLocations:
-            if city == ip[1]:
-                newResult = [ip[0], city, ip[2], ip[3]]
-                results.append(newResult)
-    elif state is not None:
-        for ip in ipLocations:
-            if state == ip[2]:
-                newResult = [ip[0], ip[1], state, ip[3]]
-                results.append(newResult)
-    elif country is not None:
-        for ip in ipLocations:
-            if country == ip[3] and country:
-                newResult = [ip[0], ip[1], ip[2], country]
+    topResult = []
+    for ip in ipLocations:
+        if ip[1] == city and ip[2] == state and ip[3] == country:
+            results = []
+            topResult.append(ip)
+        elif ip[1] == city or ip[2] == state or ip[3] == country:
+            newResult = [ip[0], ip[1], ip[2], ip[3]]
+            if topResult is True:
+                results = []
+                for ip in topResult:
+                    if ip[1] == newResult[1] and ip[2] == newResult[2] and ip[3] == newResult[3]:
+                        topResult.append(newResult)
+                    else:
+                        results = []
+            else:
                 results.append(newResult)
     if not results:
         return "Ip not found"
+    elif topResult is True:
+        return topResult
     else:
         return results
 def filterLocation(ipLocations, ipAddress):
