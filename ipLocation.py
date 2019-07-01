@@ -4,7 +4,7 @@ def locateIp(ipAddress):
     noCity, noState = "No associated city for this IP", "No associated state for this IP"
     column,row = 4, len(ipAddress)
     ipLocation = [[0 for c in range(column)]for r in range(row)]
-    reader = geoip2.database.Reader("GeoLite2-City/GeoLite2-City.mmdb")
+    reader = geoip2.database.Reader("../GeoLite2-City/GeoLite2-City.mmdb")
     for i in range(len(ipAddress)):
             ip = ipAddress[i]
             ipLocation[i][0] = ip
